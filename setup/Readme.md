@@ -11,3 +11,6 @@ Create a ClusterRole with a set of permissions which will be applied to the Trae
 $ kubectl create -f traefik-cr.yaml
 clusterrole.rbac.authorization.k8s.io "traefik-ingress" created
 ```
+To enable these permissions, we should bind the ClusterRole to the Traefik ServiceAccount. This can be done using the ClusterRoleBinding manifest:
+
+https://supergiant.io/blog/using-traefik-as-ingress-controller-for-your-kubernetes-cluster/
