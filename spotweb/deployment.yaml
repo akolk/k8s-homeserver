@@ -1,0 +1,27 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: spotweb
+  namespace: homemediaserver
+  labels:
+    app: spotweb
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: spotweb
+    spec:
+      containers:
+      - image: homeassistant/raspberrypi3-homeassistant:0.51.1
+        name: homeassistant
+        ports:
+        - containerPort: 8082
+      volumes:
+      - name: config
+        configMap:
+          name: homeassistant
+      - name: data
+        hostPath:
+        path: /srv/home-assistant-data
+      hostNetwork: true
