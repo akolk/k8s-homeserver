@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sickchill
+  namespace: homemediaserver
+  labels:
+    app: sickchill
+  annotations:
+    # ingress.kubernetes.io/auth-secret: discourse-basic-auth
+    # ingress.kubernetes.io/auth-type: basic
+    # ingress.kubernetes.io/auth-realm: "thisone"
+    # kubernetes.io/tls-acme: "true"
+spec:
+  rules:
+  - host: sickchill.internal.anjokolk.com
+    http:
+      paths:
+      - backend:
+          serviceName: sickchill
+          servicePort: 8081
+        path: /
