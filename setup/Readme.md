@@ -1,3 +1,14 @@
+First create the namespace:
+
+```
+$ kubectl create -f namespace.yaml
+```
+
+Or recreate the namespace:
+```
+$ kubectl apply -f namespace.yaml
+```
+
 To create the ServiceAccount:
 
 ```shell
