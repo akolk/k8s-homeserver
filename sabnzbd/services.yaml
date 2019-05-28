@@ -1,12 +1,13 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: sabnzbd-service
+  app: sabnzbd
+  namespace: homemediaserver
 spec:
   selector:
     app: sabnzbd
   ports:
   - protocol: TCP
-    port: 8080
-    targetPort: 8080
+    port: 6789
+    targetPort: 6789
   type: NodePort
