@@ -1,8 +1,8 @@
----
  apiVersion: apps/v1
  kind: Deployment
  metadata:
-   name: sabnzbd-deployment
+   name: sabnzbd
+   namespace: homemediaserver
    labels:
      app: sabnzbd
  spec:
