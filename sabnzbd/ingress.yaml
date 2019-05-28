@@ -17,5 +17,5 @@ spec:
       paths:
       - backend:
           serviceName: sabnzbd
-          servicePort: 8123
+          servicePort: 6789
         path: /
