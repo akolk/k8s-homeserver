@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: sabnzbd
+  namespace: homemediaserver
+  labels:
+    app: sabnzbd
+  annotations:
+    # ingress.kubernetes.io/auth-secret: discourse-basic-auth
+    # ingress.kubernetes.io/auth-type: basic
+    # ingress.kubernetes.io/auth-realm: "thisone"
+    # kubernetes.io/tls-acme: "true"
+spec:
+  rules:
+  - host: sabnzbd.internal.anjokolk.com
+    http:
+      paths:
+      - backend:
+          serviceName: sabnzbd
+          servicePort: 6789
+        path: /

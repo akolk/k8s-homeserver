@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: spotweb
+  namespace: homemediaserver
+  labels:
+    app: homemediaserver
+  annotations:
+    # ingress.kubernetes.io/auth-secret: discourse-basic-auth
+    # ingress.kubernetes.io/auth-type: basic
+    # ingress.kubernetes.io/auth-realm: "thisone"
+    # kubernetes.io/tls-acme: "true"
+spec:
+  rules:
+  - host: spotweb.internal.anjokolk.com
+    http:
+      paths:
+      - backend:
+          serviceName: spotweb
+          servicePort: 8082
+        path: /

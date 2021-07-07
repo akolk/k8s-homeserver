@@ -1,0 +1,42 @@
+ apiVersion: apps/v1
+ kind: Deployment
+ metadata:
+   name: sabnzbd
+   namespace: homemediaserver
+   labels:
+     app: sabnzbd
+ spec:
+   replicas: 1
+   selector:
+      matchLabels:
+        app: sabnzbd
+   template:
+     metadata:
+       labels:
+         app: sabnzbd
+     spec:
+      containers:
+         - name: sabnzbd
+           image: linuxserver/sabnzbd
+           ports:
+             - containerPort: 6789
+           volumeMounts:
+             - mountPath: /config
+               name: sabnzbd-config
+             - mountPath: /downloads
+               name: sabnzbd-downloads
+             - mountPath: /incomplete-downloads
+               name: sabnzbd-incomplete
+      volumes:
+        - name: sabnzbd-config
+          nfs:
+            server: 192.168.178.33
+            path: /volume1/openflixr/downloads/sabnzbd-config
+        - name: sabnzbd-downloads
+          nfs:
+            server: 192.168.178.33
+            path: /volume1/openflixr/downloads
+        - name: sabnzbd-incomplete
+          nfs:
+            server: 192.168.178.33
+            path: /volume1/openflixr/downloads/incomplete

@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spotweb
+  namespace: homemediaserver
+  labels:
+    app: spotweb
+spec:
+  ports:
+  - port: 8082
+    # name: ui
+    # targetPort: ui
+  selector:
+    app: spotweb

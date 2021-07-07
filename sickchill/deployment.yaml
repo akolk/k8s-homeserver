@@ -1,0 +1,42 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: sickchill
+  namespace: homemediaserver
+  labels:
+    app: sickchill
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: sickchill
+    spec:
+      containers:
+      - image: linuxserver/sickchill
+        name: sickchill
+        ports:
+        - containerPort: 8081
+        volumeMounts:
+        - name: config
+          mountPath: /etc/homeassistant
+      volumes:
+      - name: config
+        configMap:
+          name: homeassistant
+      - name: data
+        hostPath:
+        path: /srv/home-assistant-data
+      hostNetwork: true
+      
+      docker create \
+  --name=sickchill \
+  -e PUID=1000 \
+  -e PGID=1000 \
+  -e TZ=<yourdbpass> \
+  -p 8081:8081 \
+  -v <path to data>:/config \
+  -v <path to data>:/downloads \
+  -v <path to data>:/tv \
+  --restart unless-stopped \
+  linuxserver/sickchill
